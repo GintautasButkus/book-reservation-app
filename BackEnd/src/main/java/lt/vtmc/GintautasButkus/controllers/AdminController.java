@@ -66,28 +66,28 @@ public class AdminController {
 
 //	**************** CATEGORY **********************
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/category")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void addCategory(@RequestBody @Valid BooksCategory bookCategory) {
 		booksCategoryService.addCategory(bookCategory);
 	}
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@DeleteMapping("/category/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteCategory(@PathVariable Long id) {
 		booksCategoryService.deleteCategory(id);
 	}
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping("/category/{id}")
 	public ResponseEntity<BooksCategory> updateCategory(@PathVariable Long id,
 			@RequestBody BooksCategory booksCategory) {
 		return booksCategoryService.updateCategory(id, booksCategory);
 	}
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/category/{id}")
 	public List<BooksCategory> getAllCategories() {
 		return booksCategoryService.getAllCategories();
@@ -95,30 +95,35 @@ public class AdminController {
 
 //	****************** BOOKS MANAGEMENT ******************************
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/book/{categoryId}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void addBook(@PathVariable Long categoryId, @RequestBody @Valid Books bookDetails) {
 		bookAdminService.addBook(categoryId, bookDetails);
 	}
 
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+//	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
 	@GetMapping("/books")
 	public List<Books> getAllBooks() {
 		return bookAdminService.getAllBooks();
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping("/book/{id}/{categoryId}")
 	public ResponseEntity<Books> updateBook(@PathVariable Long id,
 			@RequestBody Books book, @PathVariable Long categoryId) {
 		return bookAdminService.updateBook(id, book, categoryId);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@DeleteMapping("/book/{id}")
 	public void deleteBook(@PathVariable Long id) {
 		bookAdminService.deleteBook(id);
+	}
+	
+	@GetMapping("/book/{id}")
+	public Books getBookById(@PathVariable Long id) {
+		return bookAdminService.getBookById(id);
 	}
 	
 	

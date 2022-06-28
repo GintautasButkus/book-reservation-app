@@ -5,7 +5,7 @@ import bg from "../img/home_bg.jpg"
 
 
 function LandingPageButton() {
-    return <Link to="/login" className="nav-link">
+    return <Link to="/register" className="nav-link">
         <button className ="btn btn-warning" style={{"margin-left":"-20px"}} > 
             <span style={{"fontSize":"24px"}}>
                 Pradėti kelionę!
@@ -17,7 +17,7 @@ function LandingPageButton() {
 function LandingPageNavRegistration() {
     return <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
     <Container fluid>
-    <Navbar.Brand href="#home" style={{"fontSize":"40px", padding:"0px", marginLeft:"160px"}} >food ON</Navbar.Brand>
+    <Navbar.Brand href="#home" style={{"fontSize":"40px", padding:"0px", marginLeft:"160px"}} >books 4 fun</Navbar.Brand>
     
       <Nav style={{"fontSize":"18px", padding:"0px"}} >
         <Nav.Link href="/login">Prisijungti</Nav.Link>
@@ -39,15 +39,15 @@ function LandingFrameMessage() {
     return <div style={style}>
         
         
-        <div style={{"fontSize": "5rem", "margin-left":"-10px", "margin-top":"-100px"}}>
-            Maistas kuris veža!!
+        <div style={{"fontSize": "4rem", "color": "white", "margin-left":"-10px", "margin-top":"-100px"}}>
+            Knygos knygelės!!
         </div>
         
-        <div style={{"fontSize": "2rem"}}>
-            Išsirink mėgstamiausią užkandinę.<br/>
-            Susirask mėgstamiausius skonius.<br/>
-            Ir važiuok patreniruoti skrandžio ten!!!<br/>
-            Skanių kelionių!
+        <div style={{"fontSize": "2rem", "color": "white"}}>
+            Išsirink mėgstamiausią knygą.<br/>
+            Susirask mėgstamiausius autorius.<br/>
+            Ir važiuok į biblioteką !!!<br/>
+            
         </div>
         <br />
         <LandingPageButton />
@@ -60,8 +60,7 @@ function LandingFrame() {
         backgroundSize: "cover",
         position: "relative",
         height: "100vh",
-        // width: "100%",
-        // display: "inline-block"
+       
     }
     return <div style={style}>
         <LandingPageNavRegistration/>

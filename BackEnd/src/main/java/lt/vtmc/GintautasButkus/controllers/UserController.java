@@ -65,29 +65,5 @@ public class UserController {
 	public void favoriteBook(@PathVariable Long bookId, @RequestBody FavoriteBooks favBook) {
 		bookUserService.favoriteBook(bookId, favBook);
 	}
-	
-//	
-//	
-//	@PreAuthorize("hasRole('ROLE_USER')")
-//	@GetMapping("/restaurant/{id}")
-//	public Restaurant selectRestaurant(@PathVariable Long id) {
-//		return userService.getRestaurantsById(id);
-//	}
-//	
-////	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-//	@GetMapping("/menu/{id}")
-//	public List<Menu> getRestaurantMenus(@PathVariable Long id) {
-//		return userService.getMenu(id);
-//	}
-//	
-//	@GetMapping("/dish/{id}")
-//	public List<Dish> getAllDishes(@PathVariable Long id) {
-//		return userService.getAllDishes(id);
-//	}
-//	
-//	@GetMapping("/restaurants")
-//	public List<Restaurant> getAllRestaurants(){
-//		return userService.getAllRestaurants();
-//	}
-//	
+		
 	}

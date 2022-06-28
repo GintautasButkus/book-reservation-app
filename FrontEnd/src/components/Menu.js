@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { Link, useParams } from 'react-router-dom';
-import restaurantService from '../services/restaurant.service';
+import bookService from '../services/book.service';
+
 
 
 
@@ -16,7 +17,7 @@ function Menu() {
     )
 
     const getMenus = (id) => {
-        restaurantService.getAllRestaurants(id).then((response) => {
+        bookService.getAllRestaurants(id).then((response) => {
             setMenu(response.data)
             console.log(response.data);
         }).catch(error => {

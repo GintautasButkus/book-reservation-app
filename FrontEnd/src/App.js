@@ -4,15 +4,10 @@ import Register from "./components/Register";
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import HomePage from "./components/HomePage";
-import Restaurants from "./components/Restaurants";
 import Menu from "./components/Menu";
-
-import Dish from "./components/Dish";
-import AdminRestaurant from "./components/AdminRestaurant";
-import AddRestaurant from "./components/AddRestaurant";
-
-
-
+import AddBook from "./components/AddBook";
+import Books from "./components/Books";
+import Admin from "./components/AdminBook";
 
 
 function App() {
@@ -24,12 +19,11 @@ function App() {
             <Route path="/" index element={<HomePage/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/register" element={<Register/>}/>
-            <Route path="/restaurants" element={<Restaurants/>}/>
+            <Route path="/books" element={<Books/>}/>
             <Route path="/menu/:id" element = {<Menu/>}/>
-            <Route path="/dish/:id" element = {<Dish/>}/>
-            <Route path="/admin" element = {<AdminRestaurant/>}/>
-            <Route path="/add-restaurant" element={<AddRestaurant/>} />
-            <Route path="/edit-restaurant/:id" element={<AddRestaurant/>} />
+            <Route path="/admin" element = {<Admin/>}/>
+            <Route path="/add-book" element={<AddBook/>} />
+            <Route path="/edit-book/:id" element={<AddBook/>} />
           </Routes>
         {/* </main> */}
       </Router>

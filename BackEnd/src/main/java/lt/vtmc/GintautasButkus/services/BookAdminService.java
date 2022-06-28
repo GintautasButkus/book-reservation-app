@@ -57,5 +57,9 @@ public class BookAdminService {
 		Books updatedBook = booksRepository.save(book);
 		return ResponseEntity.ok(updatedBook);
 	}
+	
+	public Books getBookById(Long id) {
+		return booksRepository.findById(id).get();
+	}
 
 }

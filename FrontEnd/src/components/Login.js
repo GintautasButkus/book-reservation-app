@@ -6,8 +6,8 @@ import AuthContext from "../context/AuthProvider";
 import axios from "../api/axios";
 import '../styles/Login.css'
 import { Link } from "react-router-dom";
-import bg from "../img/login_bg.jpg"
-import Restaurants from "./Restaurants";
+// import bg from "../img/login_bg.jpg"
+import Restaurants from "./Books";
 
 
 
@@ -68,7 +68,7 @@ const Login = () => {
   };
 
   const style = {
-    backgroundImage: "url(" + bg + ")",
+    // backgroundImage: "url(" + bg + ")",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     position: "relative",
@@ -79,7 +79,7 @@ const Login = () => {
   return (
     <div style={style}>
       {success ? (
-        window.location.href = '/restaurants'
+        window.location.href = '/admin'
       ) : (
         <section>
           <p
