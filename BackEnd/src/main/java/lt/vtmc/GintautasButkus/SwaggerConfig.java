@@ -20,6 +20,6 @@ public class SwaggerConfig {
 	}
 	
 	private ApiInfo getInfo() {
-		return new ApiInfoBuilder().title("Food ON").description("Let's food on").license("Gintautas Butkus").build();
+		return new ApiInfoBuilder().title("Books").description("Books reservation application").license("Gintautas Butkus").build();
 	}
 }

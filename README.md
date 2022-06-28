@@ -7,5 +7,7 @@ Admin created automatically after project initialized and constructed. Credentia
   - USERNAME: admin
   - PASSWORD: admin
 
+New users can be created by the admin or user can self register. New user gains USER role. Admin has both ADMIN and USER roles.
+
   Frontend part to be launched in REACT by command npm start.
 
