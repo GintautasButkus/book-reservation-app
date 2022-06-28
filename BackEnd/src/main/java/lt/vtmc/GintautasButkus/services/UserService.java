@@ -17,24 +17,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import lt.vtmc.GintautasButkus.exceptions.NoDishExistException;
-import lt.vtmc.GintautasButkus.exceptions.NoMenuExistsException;
-import lt.vtmc.GintautasButkus.exceptions.NoRestaurantExistsException;
-import lt.vtmc.GintautasButkus.models.Dish;
 import lt.vtmc.GintautasButkus.models.ERole;
-import lt.vtmc.GintautasButkus.models.Menu;
-import lt.vtmc.GintautasButkus.models.Restaurant;
 import lt.vtmc.GintautasButkus.models.Role;
 import lt.vtmc.GintautasButkus.models.User;
 import lt.vtmc.GintautasButkus.payloadRequest.LoginRequest;
 import lt.vtmc.GintautasButkus.payloadRequest.SignupRequest;
 import lt.vtmc.GintautasButkus.payloadResponse.MessageResponse;
 import lt.vtmc.GintautasButkus.payloadResponse.UserInfoResponse;
-import lt.vtmc.GintautasButkus.repositories.DishRepository;
-import lt.vtmc.GintautasButkus.repositories.MenuRepository;
-import lt.vtmc.GintautasButkus.repositories.OrderItemRepository;
-import lt.vtmc.GintautasButkus.repositories.OrderRepository;
-import lt.vtmc.GintautasButkus.repositories.RestaurantRepository;
 import lt.vtmc.GintautasButkus.repositories.RoleRepository;
 import lt.vtmc.GintautasButkus.repositories.UserRepository;
 import lt.vtmc.GintautasButkus.security.jwt.JwtUtils;
@@ -59,21 +48,6 @@ public class UserService {
 
 	@Autowired
 	PasswordEncoder encoder;
-
-	@Autowired
-	RestaurantRepository restaurantRepository;
-	
-	@Autowired
-	MenuRepository menuRepository;
-	
-	@Autowired
-	DishRepository dishRepository;
-	
-	@Autowired
-	OrderItemRepository orderItemRepository;
-	
-	@Autowired
-	OrderRepository orderRepository;
 	
 	
 	
@@ -137,36 +111,7 @@ public class UserService {
 				.body(new MessageResponse("You've been signed out!"));
 	}
 	
-//	****************** SEARCH RESTAURANT *******************************************
-	
-	public List<Restaurant> getRestaurantsByName(String name) {
-		if (restaurantRepository.findAll().stream().filter(restaurant -> restaurant.getRestaurantName().contains(name)).findFirst().isPresent()) {
-			return restaurantRepository.findAll().stream().filter(restaurant -> restaurant.getRestaurantName().contains(name)).collect(Collectors.toList());
-		} else {
-			throw new NoRestaurantExistsException("No restaurant exists with name " + name);
-		}
-	}
-	
-//	****************** GET RESTAURANT *******************************************
-	
-	public Restaurant getRestaurantsById(Long id) {
-		if (restaurantRepository.findById(id).isPresent()) {
-			return restaurantRepository.findById(id).get();
-		} else {
-			throw new NoRestaurantExistsException("No restaurant exists with ID " + id);
-		}
-	}
-	
-//	****************** GET RESTAURANT's MENUs *******************************************
-	
-	public List<Menu> getMenu(Long id) {
-		if (restaurantRepository.findById(id).isPresent()) {
-			return menuRepository.findAll().stream().filter(menu -> menu.getRestaurant().getId() == id).collect(Collectors.toList());
-		} else {
-			throw new NoMenuExistsException("No menu exists in restaurant with id " + id);
-		}
-	}
-	
+
 //	******************* GET LOGGED-in USER ID ***********************************************
 	public String getUsername() {
 		String username = null;
@@ -179,17 +124,5 @@ public class UserService {
 		return username;
 	}
 	
-//	 ***************** GET ALL RESTAURANTS ***************************************************
-	public List<Restaurant> getAllRestaurants(){
-		return restaurantRepository.findAll();
-	}
-	
-//	 ***************** GET ALL Dishes ***************************************************
-	public List<Dish> getAllDishes(Long id) {
-		if (menuRepository.findById(id).isPresent()) {
-			return dishRepository.findAll().stream().filter(dish -> dish.getMenu().getMenuId() == id).collect(Collectors.toList());
-		} else {
-			throw new NoDishExistException("No dish exists in restaurant with id " + id);
-		}
-	}
+
 }

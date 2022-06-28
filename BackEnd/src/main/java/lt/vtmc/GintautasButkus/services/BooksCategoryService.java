@@ -1,5 +1,7 @@
 package lt.vtmc.GintautasButkus.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -34,6 +36,10 @@ public class BooksCategoryService {
 
 		BooksCategory updatedCategory = booksCategoryRepository.save(booksCategory);
 		return ResponseEntity.ok(updatedCategory);
+	}
+	
+	public List<BooksCategory> getAllCategories(){
+		return booksCategoryRepository.findAll();
 	}
 
 }

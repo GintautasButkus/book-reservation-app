@@ -1,7 +1,6 @@
 package lt.vtmc.GintautasButkus.services;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
@@ -15,14 +14,10 @@ import org.springframework.stereotype.Service;
 
 import lt.vtmc.GintautasButkus.exceptions.NoUserExistsException;
 import lt.vtmc.GintautasButkus.models.ERole;
-import lt.vtmc.GintautasButkus.models.Restaurant;
 import lt.vtmc.GintautasButkus.models.Role;
 import lt.vtmc.GintautasButkus.models.User;
 import lt.vtmc.GintautasButkus.payloadRequest.SignupRequest;
 import lt.vtmc.GintautasButkus.payloadResponse.MessageResponse;
-import lt.vtmc.GintautasButkus.repositories.DishRepository;
-import lt.vtmc.GintautasButkus.repositories.MenuRepository;
-import lt.vtmc.GintautasButkus.repositories.RestaurantRepository;
 import lt.vtmc.GintautasButkus.repositories.RoleRepository;
 import lt.vtmc.GintautasButkus.repositories.UserRepository;
 
@@ -41,14 +36,6 @@ public class AdminService {
 	@Autowired
 	PasswordEncoder encoder;
 
-	@Autowired
-	RestaurantRepository restaurantRepository;
-
-	@Autowired
-	MenuRepository menuRepository;
-
-	@Autowired
-	DishRepository dishRepository;
 
 // ************************* CREATE ADMIN USER WHEN APP STARTS ***********************
 	@PostConstruct
@@ -111,9 +98,5 @@ public class AdminService {
 		}
 	}
 	
-//	***************** ALL RESTAURANTS ***********************************
-	public List<Restaurant> getAllRestaurants(){
-		return restaurantRepository.findAll();
-	}
 
 }

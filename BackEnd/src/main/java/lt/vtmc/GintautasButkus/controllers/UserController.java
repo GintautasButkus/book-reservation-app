@@ -11,64 +11,83 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import lt.vtmc.GintautasButkus.models.Dish;
-import lt.vtmc.GintautasButkus.models.Menu;
-import lt.vtmc.GintautasButkus.models.Restaurant;
+import lt.vtmc.GintautasButkus.models.Books;
+import lt.vtmc.GintautasButkus.models.FavoriteBooks;
 import lt.vtmc.GintautasButkus.payloadRequest.SignupRequest;
-import lt.vtmc.GintautasButkus.services.AdminService;
+import lt.vtmc.GintautasButkus.services.BookUserService;
 import lt.vtmc.GintautasButkus.services.UserService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @Api(value = "", tags = { "User Board" })
-@Tag(name = "User Board", description = "Food On App Users")
+@Tag(name = "User Board", description = "Books for Users")
 @RestController
 @RequestMapping("/api/auth/user")
 
 public class UserController {
 	
 	@Autowired
+	private BookUserService bookUserService;
+	
+	@Autowired
 	private UserService userService;
 	
-	
-	
+		
 	@PostMapping("/signup")
 	public ResponseEntity<?> createUser(@Valid @RequestBody SignupRequest signUpRequest) {
 		return userService.registerUser(signUpRequest);
 	}
 	
 	
-	@PreAuthorize("hasRole('ROLE_USER')")
-	@GetMapping("/restaurant/{nameFragment}")
-	public List<Restaurant> getRestaurantsByName(@PathVariable String nameFragment) {
-		return userService.getRestaurantsByName(nameFragment);
-	}
+	
+	
 	
 	@PreAuthorize("hasRole('ROLE_USER')")
-	@GetMapping("/restaurant/{id}")
-	public Restaurant selectRestaurant(@PathVariable Long id) {
-		return userService.getRestaurantsById(id);
+	@GetMapping("/book/{nameFragment}")
+	public List<Books> getBooksByName(@PathVariable String nameFragment) {
+		return bookUserService.getBookByName(nameFragment);
 	}
 	
-//	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-	@GetMapping("/menu/{id}")
-	public List<Menu> getRestaurantMenus(@PathVariable Long id) {
-		return userService.getMenu(id);
+	@PreAuthorize("hasRole('ROLE_USER')")
+	@PutMapping("/book/{id}")
+	public ResponseEntity<Books> reserveBooks(@PathVariable Long id){
+		return bookUserService.reserveBook(id);
 	}
 	
-	@GetMapping("/dish/{id}")
-	public List<Dish> getAllDishes(@PathVariable Long id) {
-		return userService.getAllDishes(id);
+	@PreAuthorize("hasRole('ROLE_USER')")
+	@PostMapping("/book/{bookId}")
+	public void favoriteBook(@PathVariable Long bookId, @RequestBody FavoriteBooks favBook) {
+		bookUserService.favoriteBook(bookId, favBook);
 	}
 	
-	@GetMapping("/restaurants")
-	public List<Restaurant> getAllRestaurants(){
-		return userService.getAllRestaurants();
-	}
-	
+//	
+//	
+//	@PreAuthorize("hasRole('ROLE_USER')")
+//	@GetMapping("/restaurant/{id}")
+//	public Restaurant selectRestaurant(@PathVariable Long id) {
+//		return userService.getRestaurantsById(id);
+//	}
+//	
+////	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+//	@GetMapping("/menu/{id}")
+//	public List<Menu> getRestaurantMenus(@PathVariable Long id) {
+//		return userService.getMenu(id);
+//	}
+//	
+//	@GetMapping("/dish/{id}")
+//	public List<Dish> getAllDishes(@PathVariable Long id) {
+//		return userService.getAllDishes(id);
+//	}
+//	
+//	@GetMapping("/restaurants")
+//	public List<Restaurant> getAllRestaurants(){
+//		return userService.getAllRestaurants();
+//	}
+//	
 	}

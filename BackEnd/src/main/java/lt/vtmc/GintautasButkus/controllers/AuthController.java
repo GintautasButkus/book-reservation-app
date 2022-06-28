@@ -18,7 +18,7 @@ import lt.vtmc.GintautasButkus.services.UserService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @Api(value = "", tags = { "New User Registry / Login / Logout" })
-@Tag(name = "New User Registry / Login / Logout", description = "Food On App Users")
+@Tag(name = "New User Registry / Login / Logout", description = "Book App Users")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
